@@ -1,0 +1,34 @@
+:root {
+    --accent-color: rgb(198, 213, 241);
+    --transition: all .4s;
+}
+
+.body {
+    font-family: "Inter", "Arial", sans-serif;
+    line-height: 17px;
+    color:#000000; ;
+    background: #fff;
+}
+.wrapper {
+    min-height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+.container {
+    max-width: 1330px;
+    margin: 0 auto;
+    padding: 0 15px;
+    height: 100%;
+}
+.title {
+    font-family: "Readex_Pro";
+    line-height: 52px;
+}
+
+/* =========================================== */
+
+.main__about {
+    margin-top: 55px;
+}
