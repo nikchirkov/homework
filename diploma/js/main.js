@@ -104,6 +104,21 @@ const swiper = new Swiper('.swiper', {
             pauseOnMouseEnter: true,
         }
     }
+});
 
+// Поиск на странице
 
+// Поиск на странице
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('search-input');
+    const tags = document.querySelectorAll('.tags .tag');
+
+    tags.forEach(tag => {
+        tag.addEventListener('click', function () {
+            const text = this.textContent.trim();
+            searchInput.value = text;
+            searchInput.focus(); // опционально: фокус на поле
+        });
+    });
 });

@@ -1,0 +1,119 @@
+.footer {
+    background: #f8f9fa;
+    padding: 44px 0 0;
+}
+
+.footer__inner {
+    display: grid;
+    gap: 28px;
+    justify-content: space-between;
+    grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+}
+
+.footer__logo {
+    margin: 11px 0 18px;
+    display: block;
+    max-width: 181px;
+}
+
+.footer__logo img {
+    width: 100%;
+}
+
+.footer__logo-text {
+    width: 290px;
+    line-height: 19.2px;
+}
+
+.footer__col-item {
+    margin-bottom: 20px;
+}
+
+.footer__col-link {
+    display: block;
+    position: relative;
+    z-index: 1;
+    font-size: 17px;
+    line-height: 21.6px;
+}
+
+.footer__col-link--title {
+    font-size: 22px;
+    line-height: 27.5px;
+}
+
+.footer-divider {
+    display: flex;
+    border-top: 1px solid #DCE5E2;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    margin: 63px auto 55px;
+}
+
+.footer__bottom {
+    display: flex;
+    align-items: center;
+}
+
+.footer__made {
+    font-size: 18px;
+    line-height: 21.6px;
+}
+
+.footer__name {
+    font-size: 18px;
+    line-height: 21.6px;
+}
+
+/* =================================================== */
+/* =================================================== */
+/* =================================================== */
+
+@media (max-width: 1000px) {
+    .footer__inner {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 15px;
+    }
+    .footer__logo-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 800px) {
+    .footer__inner {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer__logo-text {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer__col-item {
+        margin-bottom: 12px;
+    }
+
+    .footer__col:first-child {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 500px) {
+    .footer__inner {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer__col {
+        text-align: center;
+    }
+
+    .footer__col:first-child {
+        grid-column: span 1;
+    }
+
+    .footer-divider {
+        width: 90%;
+        margin: 40px auto 30px;
+    }
+}

@@ -1,8 +1,11 @@
 :root {
-    --accent-color: rgb(198, 213, 241);
+    --accent-color: rgb(73, 132, 240);
     --transition: all .4s;
 }
-
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5vw;
+}
 .body {
     font-family: "Inter", "Arial", sans-serif;
     line-height: 17px;
@@ -24,11 +27,22 @@
 }
 .title {
     font-family: "Readex_Pro";
-    line-height: 52px;
 }
 
 /* =========================================== */
 
 .main__about {
     margin-top: 55px;
+}
+.main__catalog {
+    margin-top: 85px;
+}
+.main__products {
+    margin-top: 80px;
+}
+.main__popular {
+    margin-top: 75px;
+}
+.main__ideas {
+    margin-top: 75px;
 }
