@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Письмо Деду Морозу</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Снежинки */
+        .snowflake {
+            position: absolute;
+            color: white;
+            font-size: 20px;
+            user-select: none;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(-20vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .letter-preview {
+            position: relative;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .letter-icon {
+            font-size: 540px;
+            opacity: 1;
+            z-index: 0;
+            color: white;
+            text-shadow: 0 5;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .read-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(238, 90, 36, 0.3);
+            display: inline-block;
+            margin-top: -20px;
+        }
+        
+        .read-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(238, 90, 36, 0.4);
+        }
+        
+        .read-button:active {
+            transform: translateY(0);
+        }
+        
+        .letter-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .letter-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .letter-content {
+            background: white;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 40px;
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+        }
+        
+        .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #e2e8f0;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+        
+        .close-button:hover {
+            background: #cbd5e0;
+        }
+        
+        .letter-content h1 {
+            color: #2d3748;
+            font-size: 28px;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        .letter-content p {
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        
+        .letter-content h2 {
+            color: #667eea;
+            font-size: 24px;
+            margin: 30px 0 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .letter-content h2 .snowflake-icon {
+            font-size: 24px;
+            color: #667eea;
+        }
+        
+        .letter-content ul {
+            color: #4a5568;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            text-align: left;
+        }
+        
+        .letter-content ul li {
+            margin-bottom: 8px;
+        }
+        
+        .letter-signature {
+            text-align: right;
+            margin-top: 30px;
+            font-style: italic;
+            color: #667eea;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .letter-preview {
+                min-height: 300px;
+                margin-bottom: 5px;
+            }
+            
+            .letter-icon {
+                font-size: 360px;
+            }
+            
+            .read-button {
+                padding: 14px 30px;
+                font-size: 16px;
+                margin-top: -15px;
+            }
+            
+            .letter-content {
+                padding: 25px;
+            }
+            
+            .letter-content h1 {
+                font-size: 24px;
+            }
+            
+            .letter-content h2 {
+                font-size: 20px;
+            }
+            
+            .letter-content h2 .snowflake-icon {
+                font-size: 20px;
+            }
+            
+            .letter-content p,
+            .letter-content ul {
+                font-size: 16px;
+            }
+            
+            .letter-signature {
+                font-size: 16px;
+            }
+            
+            .snowflake {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="letter-preview">
+            <div class="letter-icon">📧</div>
+        </div>
+        <button class="read-button" id="readButton">Прочитать письмо</button>
+    </div>
+    
+    <div class="letter-modal" id="letterModal">
+        <div class="letter-content">
+            <button class="close-button" id="closeButton">&times;</button>
+            <h1>Письмо деду морозу</h1>
+            <p>Год сложился очень хорошо. Я закончил первый курс с отличием, летом женился, а в ноябре мне удалось купить курсы по программированию, о которых я давно мечтал. Надеюсь я смогу получить какой-нибудь подарок на новый год.</p>
+            <h2><span class="snowflake-icon">❄</span> Мои пожелания на 2026 год</h2>
+            <ul>
+                <li>закончить курс по программированию</li>
+                <li>получить сертификат онлайн-школы Арокен</li>
+                <li>делать красивые и качественные сайты</li>
+                <li>выйти на фриланс и выполнить свой первый заказ</li>
+                <li>выиграть в конкурсе на Новый Год</li>
+                <li>сдать зачет по электротехнике 😥</li>
+            </ul>
+            <div class="letter-signature">С наилучшими пожеланиями, Никита</div>
+        </div>
+    </div>
+
+    <script>
+        // Создание снежинок для полного покрытия экрана
+        function createSnowflakes() {
+            const snowflakeCount = 200;
+            const snowflakes = ['❄', '❅', '❆'];
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = snowflakes[Math.floor(Math.random() * snowflakes.length)];
+                
+                // Полное покрытие по X (от -20% до 120% для покрытия всех областей)
+                const leftPos = (Math.random() - 0.2) * 140;
+                snowflake.style.left = leftPos + 'vw';
+                
+                // Начальная позиция по Y (от -30vh до 20vh для заполнения верхней части)
+                const topPos = (Math.random() - 0.3) * 50 - 30;
+                snowflake.style.top = topPos + 'vh';
+                
+                // Случайный размер
+                const size = Math.random() * 25 + 8;
+                snowflake.style.fontSize = size + 'px';
+                
+                // Случайная непрозрачность
+                snowflake.style.opacity = Math.random() * 0.8 + 0.2;
+                
+                // Случайная длительность анимации (3-8 секунд)
+                const duration = Math.random() * 5 + 3;
+                snowflake.style.animationDuration = duration + 's';
+                
+                // Случайная задержка для создания эффекта "уже падающих" снежинок
+                const delay = -Math.random() * 10;
+                snowflake.style.animationDelay = delay + 's';
+                
+                document.body.appendChild(snowflake);
+            }
+        }
+        
+        // Инициализация
+        createSnowflakes();
+        
+        // Обработчики кнопок
+        const readButton = document.getElementById('readButton');
+        const letterModal = document.getElementById('letterModal');
+        const closeButton = document.getElementById('closeButton');
+        
+        readButton.addEventListener('click', () => {
+            letterModal.classList.add('active');
+        });
+        
+        closeButton.addEventListener('click', () => {
+            letterModal.classList.remove('active');
+        });
+        
+        letterModal.addEventListener('click', (e) => {
+            if (e.target === letterModal) {
+                letterModal.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+
